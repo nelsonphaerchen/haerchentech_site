@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminal Blog</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <header>
+            <nav>
+                <a href="/">./blog</a>
+                <a href="/portfolio">./portfolio</a>
+                <a href="/contato">./contato</a>
+            </nav>
+            <button id="theme-toggle" class="theme-btn">[Modo Claro]</button>
+        </header>
+
+        <h1>Posts Recentes</h1>
+        <ul>
+            <% posts.forEach(post => { %>
+                <li>
+                    <h2><a href="/post/<%= post.slug %>"><%= post.title %></a></h2>
+                    <small>> Data: <%= post.date %></small>
+                    <p><%= post.description %></p>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <script src="/theme.js"></script>
+</body>
+</html>

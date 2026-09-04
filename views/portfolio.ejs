@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Mewus Projetos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <header>
+            <nav>
+                <a href="/">./blog</a>
+                <a href="/portfolio">./portfolio</a>
+                <a href="/contato">./contato</a>
+            </nav>
+            <button id="theme-toggle" class="theme-btn">[Modo Claro]</button>
+        </header>
+
+        <h1>Meus Projetos</h1>
+        <ul>
+            <% projetos.forEach(p => { %>
+                <li>
+                    <strong><%= p.nome %></strong>: <%= p.desc %> 
+                    <br><a href="<%= p.link %>" target="_blank">Ver no GitHub</a>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <script src="/theme.js"></script>
+</body>
+</html>
+
