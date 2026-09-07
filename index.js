@@ -125,9 +125,9 @@ app.get('/portfolio', (c) => {
 app.get('/contato', (c) => {
   const html = `
         <ul>
-            <li><strong>LinkedIn:</strong> <a href="<%= linkedin %>" target="_blank"><%= linkedin %></a></li>
-            <li><strong>GitHub:</strong> <a href="<%= github %>" target="_blank"><%= github %></a></li>
-            <li><strong>Email:</strong> <a href="mailto:<%= email %>"><%= email %></a></li>
+            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nelsonphaerchen/" target="_blank">nelsonphaerchen</a></li>
+            <li><strong>GitHub:</strong> <a href="https://github.com/nelsonphaerchen" target="_blank"> nelsonphaerchen </a></li>
+            <li><strong>Email:</strong> <a href="mailto:haerchen@gmail.com">haerchen@gmail.com</a></li>
         </ul>
   `;
   return c.html(renderLayout('Contato', html));
