@@ -115,7 +115,8 @@ app.get('/portfolio', (c) => {
   const html = `
     <h1>Meus Projetos</h1>
     <ul>
-        <li><strong>Projeto 1</strong>: Automação em Node.js <br><a href="https://github.com" target="_blank">[Ver no GitHub]</a></li>
+        <li><strong>Este Site</strong> <br><a href="Descrição do projeto em Node.js', link: 'https://github.com/nelsonphaerchen/haerchentech_site" target="_blank">[Ver no GitHub]</a></li>
+        <li><strong>Automação e DevOps</strong> <br><a href="https://github.com/nelsonphaerchen/portifolio" target="_blank">[Ver no GitHub]</a></li>
     </ul>
   `;
   return c.html(renderLayout('Portfólio', html));
@@ -123,10 +124,11 @@ app.get('/portfolio', (c) => {
 
 app.get('/contato', (c) => {
   const html = `
-    <h1>Contato</h1>
-    <ul>
-        <li><strong>GitHub:</strong> <a href="https://github.com" target="_blank">github.com</a></li>
-    </ul>
+        <ul>
+            <li><strong>LinkedIn:</strong> <a href="<%= linkedin %>" target="_blank"><%= linkedin %></a></li>
+            <li><strong>GitHub:</strong> <a href="<%= github %>" target="_blank"><%= github %></a></li>
+            <li><strong>Email:</strong> <a href="mailto:<%= email %>"><%= email %></a></li>
+        </ul>
   `;
   return c.html(renderLayout('Contato', html));
 });
