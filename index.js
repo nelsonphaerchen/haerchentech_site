@@ -1,5 +1,4 @@
 import { Hono } from 'hono';
-import { serveStatic } from 'hono/cloudflare-workers';
 import { marked } from 'marked';
 import matter from 'front-matter';
 
