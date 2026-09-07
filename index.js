@@ -17,8 +17,13 @@ function getPosts() {
   const posts = [];
   for (const path in markdownFiles) {
     const slug = path.split('/').pop().replace('.md', '');
-    const content = markdownFiles[path];
-    const parsed = matter(content);
+    
+    // Esbuild loads imports as module objects; grab .default or fallback to the module itself
+    const fileModule = markdownFiles[path];
+    const content = typeof fileModule === 'string' ? fileModule : (fileModule.default || fileModule);
+
+    // Ensure content is a string before passing to front-matter
+    const parsed = matter(typeof content === 'string' ? content : String(content));
 
     posts.push({
       slug,
@@ -78,24 +83,25 @@ app.get('/', (c) => {
 app.get('/post/:slug', (c) => {
   const slug = c.req.param('slug');
   const postPath = `../posts/${slug}.md`;
-  const rawContent = markdownFiles[postPath];
+  const fileModule = markdownFiles[postPath];
 
-  if (!rawContent) {
+  if (!fileModule) {
     return c.text('Post não encontrado', 404);
   }
 
+  const rawContent = typeof fileModule === 'string' ? fileModule : (fileModule.default || fileModule);
   const parsed = matter(rawContent);
   const htmlContent = marked(parsed.body);
 
   const html = `
     <article>
-        <h1>${parsed.attributes.title}</h1>
-        <small>> Publicado em: ${parsed.attributes.date}</small>
+        <h1>${parsed.attributes.title || slug}</h1>
+        <small>> Publicado em: ${parsed.attributes.date || ''}</small>
         <hr>
         <div>${htmlContent}</div>
     </article>
   `;
-  return c.html(renderLayout(parsed.attributes.title, html));
+  return c.html(renderLayout(parsed.attributes.title || slug, html));
 });
 
 app.get('/portfolio', (c) => {
