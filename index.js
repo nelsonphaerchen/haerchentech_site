@@ -10,7 +10,11 @@ const app = new Hono();
 //app.use('/images/*', serveStatic({ root: './posts/' }));
 
 app.get('/public/*', async (c) => {
-  return c.env.ASSETS.fetch(c.req.raw);
+  // Strip '/public' prefix so '/public/style.css' becomes '/style.css' relative to ./public
+  const url = new URL(c.req.url);
+  url.pathname = url.pathname.replace(/^\/public/, '');
+  
+  return c.env.ASSETS.fetch(new Request(url.toString(), c.req.raw));
 });
 
 // Carrega todos os arquivos .md em tempo de compilação
