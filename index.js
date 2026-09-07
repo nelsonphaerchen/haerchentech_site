@@ -6,8 +6,12 @@ import matter from 'front-matter';
 const app = new Hono();
 
 // Servir arquivos estáticos (CSS, imagens, JS)
-app.use('/public/*', serveStatic({ root: './' }));
-app.use('/images/*', serveStatic({ root: './posts/' }));
+//app.use('/public/*', serveStatic({ root: './' }));
+//app.use('/images/*', serveStatic({ root: './posts/' }));
+
+app.get('/public/*', async (c) => {
+  return c.env.ASSETS.fetch(c.req.raw);
+});
 
 // Carrega todos os arquivos .md em tempo de compilação
 // const markdownFiles = import.meta.glob('../posts/*.md', { query: '?raw', import: 'default', eager: true });
