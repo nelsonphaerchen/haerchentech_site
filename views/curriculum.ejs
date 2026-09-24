@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Currículo - <%= profile.name %></title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .subtitle {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        .contact-info {
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid currentColor;
+        }
+        .contact-info span {
+            margin-right: 10px;
+        }
+        .job-header {
+            margin-top: 16px;
+            margin-bottom: 6px;
+        }
+        .job-company {
+            font-weight: bold;
+        }
+        .job-title {
+            font-style: italic;
+        }
+        .job-date {
+            float: right;
+        }
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <header>
+            <nav>
+                <a href="/">./blog</a>
+                <a href="/portfolio">./portfolio</a>
+                <a href="/contato">./contato</a>
+                <a href="/curriculum">./curriculum</a>
+            </nav>
+            <button id="theme-toggle" class="theme-btn">[Modo Claro]</button>
+        </header>
+
+        <h1><%= profile.name %></h1>
+        <div class="subtitle"><%= profile.title %></div>
+        
+        <div class="contact-info">
+            <span>📍 <%= profile.location %></span> | 
+            <span>📞 <%= profile.phone %></span> | 
+            <span>✉️ <a href="mailto:<%= profile.email %>"><%= profile.email %></a></span> | 
+            <span>🔗 <a href="<%= profile.linkedin %>" target="_blank">LinkedIn</a></span> | 
+            <span>💻 <a href="<%= profile.github %>" target="_blank">GitHub</a></span>
+        </div>
+
+        <h2>Perfil Profissional</h2>
+        <p><%= profile.summary %></p>
+
+        <h2>Competências Técnicas</h2>
+        <ul>
+            <% skills.forEach(skill => { %>
+                <li><strong><%= skill.category %>:</strong> <%= skill.items %></li>
+            <% }); %>
+        </ul>
+
+        <h2>Experiência Profissional</h2>
+        <% experiences.forEach(exp => { %>
+            <div class="job-header">
+                <span class="job-company"><%= exp.company %></span> — <span class="job-title"><%= exp.role %></span>
+                <span class="job-date"><%= exp.period %></span>
+            </div>
+            <div class="clear"></div>
+            <ul>
+                <% exp.responsibilities.forEach(item => { %>
+                    <li><%= item %></li>
+                <% }); %>
+            </ul>
+        <% }); %>
+
+        <h2>Formação Acadêmica</h2>
+        <% education.forEach(edu => { %>
+            <p>
+                <strong><%= edu.degree %></strong><br>
+                <%= edu.institution %> — <em><%= edu.status %></em>
+            </p>
+        <% }); %>
+
+        <h2>Idiomas</h2>
+        <% languages.forEach(lang => { %>
+            <p><strong><%= lang.name %>:</strong> <%= lang.level %></p>
+        <% }); %>
+    </div>
+
+    <script src="/theme.js"></script>
+</body>
+</html>
