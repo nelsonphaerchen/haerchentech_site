@@ -455,8 +455,11 @@ globalThis.process = {
 	_linkedBinding
 };
 //#endregion
+//#region posts/do_monolito_ao_microsservico.md?raw
+var do_monolito_ao_microsservico_default = "---\ntitle: Do Monolito ao Microsserviço\ndate: 2026-09-25\ndescription: Por Que Todo DevOps Deveria Aprender System Design\n---\n\n# Do Monolito ao Microsserviço: Por Que Todo DevOps Deveria Aprender System Design\n\nCom a chegada das ferramentas de IA, o dia a dia de quem trabalha com infraestrutura e DevOps mudou drasticamente. Tarefas que antes consumiam uma semana inteira — como escrever scripts de Terraform e Ansible ou configurar pipelines de CI/CD manualmente — hoje são resolvidas em meio dia.\n\nClaro que a IA não faz milagres sozinha: sem conhecimento técnico prévio para escrever bons prompts e validar o código gerado, você corre o risco de criar recursos fantasmas ou deletar e reiniciar serviços críticos por engano. Mas, quando usada com critério, a IA libera algo valiosíssimo: **tempo**.\n\nE a pergunta que fica é: o que fazer com esse tempo livre?\n\n---\n\n## Por que decidi estudar System Design?\n\nEm vez de apenas preencher a rotina com mais tarefas repetitivas, resolvi investir em algo que costuma ser negligenciado no universo de infraestrutura: **System Design** (Design de Sistemas).\n\nVocê pode pensar: *\"Mas System Design não é coisa de desenvolvedor?\"*\n\nSim e não. Afinal, a própria sigla DevOps une *Dev* e *Ops*. Entender como as aplicações são construídas por dentro nos ajuda a enxergar muito mais longe. Para colocar isso em prática, comecei a desenvolver minhas próprias aplicações usando **Python, FastAPI e React**. Nada mirabolante, apenas o necessário para dominar a ponte entre código e infraestrutura.\n\nFoi aí que os dilemas arquiteturais começaram a aparecer.\n\n---\n\n## O Dilema: Projetar o Futuro sem Falir no Presente\n\nQuando comecei a estruturar meu projeto, vieram os questionamentos:\n* Faço um monolito ou divido em microsserviços?\n* Preciso de um servidor único ou múltiplos servidores?\n* Vale a pena colocar uma camada de cache com Redis na frente do banco logo de início?\n\nMinha meta era construir uma ferramenta capaz de suportar **100 mil usuários no futuro**, mas que no presente mal tinha **um** usuário (eu mesmo). \n\nSe eu montasse uma estrutura gigante desde o primeiro dia — com múltiplos microsserviços, cluster Kubernetes multizona e Redis na frente do banco —, eu teria uma fatura altíssima na nuvem para atender requisições praticamente nulas. Seria a clássica armadilha da otimização prematura.\n\n---\n\n## Monolito Consciente: O Meio-Termo Perfeito\n\nA solução para esse dilema foi adotar o conceito de **Monolito Consciente**:\n\n1. **Visão de Microsserviço no Código:** Separe claramente o *frontend* do *backend*, use chamadas via API REST e utilize um banco de dados externo completo (evitando soluções temporárias como SQLite se a intenção for escalar).\n2. **Infraestrutura de Monolito na Execução:** Rode tudo em uma única máquina simples enquanto a demanda for baixa.\n\nDessa forma, você não investe pesado em infraestrutura agora, mas deixa o sistema completamente preparado para quando a migração for necessária. Quando a carga aumentar, bastará faturar a transição: separar os serviços de frontend e backend, adicionar um *load balancer*, criar réplicas do banco de dados e inserir a camada de cache. \n\nTudo isso **sem precisar reescrever uma linha de código**.\n\n---\n\n## O Verdadeiro Valor do DevOps no Design de Arquitetura\n\nHistoricamente, quando a definição de infraestrutura fica inteiramente nas mãos de quem só programa, é comum surgirem pedidos como *\"precisamos de um Redis aqui\"* sem uma análise real de latência ou necessidade.\n\nQuando o profissional de DevOps domina *System Design*, ele ganha voz ativa para:\n* **Reduzir custos:** Evitando o provisionamento desnecessário de clusters e serviços caros.\n* **Garantir escalabilidade saudável:** Planejando o crescimento de forma sustentável e previsível.\n* **Decidir com base em dados:** Questionando o *porquê* e o *para quê* de cada componente antes de aprovar a arquitetura.\n\n---\n\n## Conclusão\n\nNão tente resolver problemas de escala que você ainda não tem. Mas **nunca deixe de planejar** a sua aplicação para o momento em que esses problemas surgirem. \n\nAprender *System Design* muda a forma como enxergamos o ciclo de vida do software e a relação entre infraestrutura e código. Se você trabalha com DevOps, fica a recomendação: estude arquitetura de sistemas e entenda como cada peça do quebra-cabeça se encaixa. O seu bolso (e o da sua empresa) agradecem!";
+//#endregion
 //#region posts/hello-mynameis.md?raw
-var hello_mynameis_default = "---\ntitle: Hello There\ndate: 2026-09-04\ndescription: General Kenobi\n---\n\n# Hello There\n\nWelcome to my first post. It is still a work in progress. Feel free to send me a message with your feedback. You can find my contact details on the contact page.\n\n![Descrição da Imagem](/images/texugo.jpeg)";
+var hello_mynameis_default = "---\ntitle: Hello There\ndate: 2026-09-04\ndescription: General Kenobi\n---\n\n# Hello There\n\nWelcome to my first post. It is still a work in progress. Feel free to send me a message with your feedback. You can find my contact details on the contact page.\n\n![Descrição da Imagem](images/texugo.jpeg)";
 //#endregion
 //#region node_modules/hono/dist/compose.js
 var compose = (middleware, onError, onNotFound) => {
@@ -11655,7 +11658,10 @@ var import_front_matter = /* @__PURE__ */ __toESM((/* @__PURE__ */ __commonJSMin
 	}
 })))(), 1);
 var app = new Hono();
-var markdownFiles = /* #__PURE__ */ Object.assign({ "../posts/hello-mynameis.md": hello_mynameis_default });
+var markdownFiles = /* #__PURE__ */ Object.assign({
+	"../posts/do_monolito_ao_microsservico.md": do_monolito_ao_microsservico_default,
+	"../posts/hello-mynameis.md": hello_mynameis_default
+});
 function getPosts() {
 	const posts = [];
 	for (const path in markdownFiles) {
@@ -11687,6 +11693,7 @@ function layout(title, body) {
       <nav>
         <a href="/">./blog</a>
         <a href="/portfolio">./portfolio</a>
+        <a href="/curriculum">./curriculum</a>
         <a href="/contato">./contato</a>
       </nav>
       <button id="theme-toggle" class="theme-btn">[Modo Claro]</button>
@@ -11738,6 +11745,116 @@ app.get("/portfolio", (c) => {
         <br><a href="https://github.com/nelsonphaerchen/portifolio" target="_blank">[Ver no GitHub]</a>
       </li>
     </ul>`));
+});
+app.get("/curriculum", (c) => {
+	return c.html(layout("Currículo - Nelson Pedro Haerchen", `
+    <h1>Nelson Pedro Haerchen</h1>
+    <div class="subtitle" style="font-weight: bold; margin-bottom: 12px; color: var(--accent, #2b6cb0);">DevOps Engineer | Platform Engineer | SRE</div>
+    
+    <div class="contact-info" style="margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid currentColor;">
+      <span>📍 Indaial, Santa Catarina, Brasil</span> | 
+      <span>📞 +55 47 9 9260-3552</span> | 
+      <span>✉️ <a href="mailto:haerchen@gmail.com">haerchen@gmail.com</a></span> | 
+      <span>🔗 <a href="https://linkedin.com/in/nelsonphaerchen/" target="_blank">LinkedIn</a></span> | 
+      <span>💻 <a href="https://github.com/nelsonphaerchen" target="_blank">GitHub</a></span>
+    </div>
+
+    <h2>Perfil Profissional</h2>
+    <p>
+      Engenheiro DevOps / Infraestrutura Sênior com ampla experiência na manutenção de ambientes escaláveis em AWS, automação de esteiras de CI/CD via Kubernetes e GitOps, e otimização de infraestrutura como código (IaC). Histórico comprovado na elevação da confiabilidade de sistemas através de observabilidade, automação orientada a Python e fluxos de trabalho assistidos por IA para entregar soluções multicloud de alto desempenho, resilientes e seguras.
+    </p>
+
+    <h2>Competências Técnicas</h2>
+    <ul>
+      <li><strong>Cloud &amp; Infraestrutura:</strong> AWS (EC2, ECS, VPC, IAM, S3), VMware vSphere, vCloud, Arquitetura de Nuvem Híbrida</li>
+      <li><strong>Infraestrutura como Código &amp; Configuração:</strong> Terraform, Ansible, Cloud-Init, Vault</li>
+      <li><strong>Containers &amp; Orquestração:</strong> Kubernetes, Docker, Helm, ArgoCD (GitOps Continuous Delivery)</li>
+      <li><strong>Observabilidade &amp; Confiabilidade:</strong> Prometheus, Alertmanager, Grafana, Gestão de Logs, Monitoramento de Saúde de Sistemas</li>
+      <li><strong>Automação &amp; Desenvolvimento:</strong> Python, FastAPI, Bash/Shell Scripting, n8n (Automação de Fluxos de Trabalho Low-Code/No-Code)</li>
+      <li><strong>IA &amp; Engenharia de Prompts:</strong> Claude Code, Otimização de Prompts para LLMs, Ajuste Fino (Fine-Tuning) e Suporte ao Treinamento de Modelos de IA (Datasets de Voz/Pronúncia e Sotaques)</li>
+      <li><strong>Sistemas Operacionais &amp; Redes:</strong> Linux (RHEL, CentOS, Ubuntu, FreeBSD), Windows Server, Active Directory, Firewalls, Segurança de Rede</li>
+      <li><strong>Bancos de Dados:</strong> PostgreSQL, MySQL, Oracle DB</li>
+      <li><strong>Metodologias &amp; Suporte:</strong> Cultura DevOps, Engenharia de Confiabilidade de Sites (SRE), Escalação de Suporte Técnico (L1-L3), Capacitação de Stakeholders</li>
+    </ul>
+
+    <h2>Experiência Profissional</h2>
+
+    <div class="job-header" style="margin-top: 14px; margin-bottom: 6px;">
+      <strong>Autônomo / Projetos Independentes</strong> — <em>Consultor de Infraestrutura e Automação (Freelancer)</em>
+      <span style="float: right;">Julho de 2026 – Presente</span>
+    </div>
+    <div style="clear: both;"></div>
+    <ul>
+      <li>Integração de automação de fluxos de trabalho com n8n para otimizar alertas operacionais, roteamento de tarefas e integrações de serviços.</li>
+      <li>Aplicação do Claude Code e estratégias avançadas de engenharia de prompts para construir ferramentas de desenvolvimento assistidas por IA e scripts de automação.</li>
+      <li>Participação em projetos de treinamento e refinamento de modelos de IA, avaliando e aprimorando a precisão de prompts, datasets fonéticos e de voz, variação de sotaques e fidelidade de pronúncia para modelos de fala baseados em IA.</li>
+    </ul>
+
+    <div class="job-header" style="margin-top: 14px; margin-bottom: 6px;">
+      <strong>Upwork</strong> — <em>Engenheiro de Infraestrutura (Remoto)</em>
+      <span style="float: right;">Maio de 2021 – Maio de 2026</span>
+    </div>
+    <div style="clear: both;"></div>
+    <ul>
+      <li>Projeção, provisionamento e gerenciamento de ambientes escaláveis na AWS (EC2, ECS, Networking) utilizando Terraform, garantindo infraestrutura reproduzível em ambientes de execução e QA.</li>
+      <li>Automação de implantação de aplicações e padronização de ambientes no Kubernetes utilizando Docker, Helm e ArgoCD para entrega contínua transparente (GitOps).</li>
+      <li>Padronização da manutenção de sistemas operacionais e do provisionamento de servidores em frotas com múltiplos SOs (Linux e Windows) utilizando playbooks e automação baseada em funções do Ansible.</li>
+      <li>Implementação de stacks de observabilidade centralizadas usando Prometheus, Alertmanager e Grafana; desenvolvimento de microsserviços internos e endpoints de API para automação usando Python e FastAPI.</li>
+      <li>Configuração e manutenção de esteiras de CI/CD no Jenkins para automatizar builds de imagens Docker, execução de testes de regressão e QA, e fluxos de trabalho de deploy com Ansible.</li>
+      <li>Gerenciamento do versionamento de código-fonte no Bitbucket e estabelecimento de integrações via webhooks com o Jenkins para disparar compilações automatizadas de CI e esteiras de testes de QA.</li>
+      <li>Integração do SonarQube aos processos de build criando imagens de contêiner personalizadas e executando análises automatizadas de segurança e qualidade do código-fonte.</li>
+    </ul>
+
+    <div class="job-header" style="margin-top: 14px; margin-bottom: 6px;">
+      <strong>Unifique</strong> — <em>Analista de Datacenter</em>
+      <span style="float: right;">Setembro de 2019 – Maio de 2021</span>
+    </div>
+    <div style="clear: both;"></div>
+    <ul>
+      <li>Gerenciamento de infraestrutura de hospedagem de alta disponibilidade e serviços de e-mail (cPanel, Apache, Postfix, MySQL e PostgreSQL) em sistemas RHEL, CentOS e FreeBSD.</li>
+      <li>Aceleração do provisionamento em nuvem para ambientes VMware e vCloud utilizando Ansible e Terraform, reduzindo drasticamente os tempos de configuração manual.</li>
+      <li>Desenvolvimento de scripts personalizados em Shell e Python para automatizar a administração rotineira de sistemas, aplicação de patches em servidores e rotinas de backup de banco de dados.</li>
+    </ul>
+
+    <div class="job-header" style="margin-top: 14px; margin-bottom: 6px;">
+      <strong>NS Imp. Com. LTDA.</strong> — <em>Analista de Suporte de Infraestrutura</em>
+      <span style="float: right;">Setembro de 2014 – Julho de 2019</span>
+    </div>
+    <div style="clear: both;"></div>
+    <ul>
+      <li>Administração de infraestrutura de rede principal, firewalls, Active Directory, hardware e ambientes com múltiplos servidores Linux/Windows Server entre diferentes filiais.</li>
+      <li>Atuação no suporte multifuncional à matriz e aos usuários de filiais remotas, garantindo 99,9% de disponibilidade operacional e minimizando o tempo de inatividade dos usuários.</li>
+    </ul>
+
+    <div class="job-header" style="margin-top: 14px; margin-bottom: 6px;">
+      <strong>Datainfo</strong> — <em>Analista de Suporte de Infraestrutura</em>
+      <span style="float: right;">Maio de 2013 – Setembro de 2014</span>
+    </div>
+    <div style="clear: both;"></div>
+    <ul>
+      <li>Gerenciamento de ambientes Linux, Windows Server, Oracle DB, Active Directory e firewalls, enquanto prestava suporte de escala e nível avançado (L1-L3) para equipes internas e clientes.</li>
+    </ul>
+
+    <div class="job-header" style="margin-top: 14px; margin-bottom: 6px;">
+      <strong>Taschibra</strong> — <em>Suporte de Sistemas e Redes</em>
+      <span style="float: right;">Junho de 2008 – Maio de 2013</span>
+    </div>
+    <div style="clear: both;"></div>
+    <ul>
+      <li>Administração de ponta a ponta de firewalls de rede, Active Directory, servidores Windows, Linux e BSD, além de telefonia e manutenção de estações de trabalho e suporte aos usuários.</li>
+    </ul>
+
+    <h2>Formação Acadêmica</h2>
+    <p>
+      <strong>Tecnólogo em Gestão da Tecnologia da Informação</strong><br>
+      UNICESUMAR — <em>Concluído em Novembro de 2018</em>
+    </p>
+
+    <h2>Idiomas</h2>
+    <p>
+      <strong>Português:</strong> Nativo<br>
+      <strong>Inglês:</strong> C1 (Avançado / Fluente)
+    </p>`));
 });
 app.get("/contato", (c) => {
 	return c.html(layout("Contato", `
