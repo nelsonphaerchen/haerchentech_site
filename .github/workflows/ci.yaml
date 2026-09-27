@@ -1,0 +1,36 @@
+# Pipeline test
+
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+#env:
+#  AWS_REGION: us-east-1
+#  ECR_REPOSITORY: fullstack
+#  EKS_CLUSTER_NAME: eks-dev
+#  KUBE_NAMESPACE: fullstack
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - name: Set Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cach: npm
+
+      - name: NPM Install
+        run: npm instal
+      - name: NPX vite build
+        run: npx vite build
+
+      - name: Start Server
+        run: |
+             npx wrangler dev &
+             sleep 3
+             kill -9 %
