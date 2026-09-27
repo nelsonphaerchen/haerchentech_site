@@ -21,7 +21,7 @@ jobs:
       - name: Set Node
         uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
           cach: npm
 
       - name: NPM Install
@@ -31,6 +31,6 @@ jobs:
 
       - name: Start Server
         run: |
-             npx wrangler dev &
+             npx wrangler devel &
              sleep 3
              kill -9 %
