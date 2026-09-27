@@ -25,12 +25,12 @@ jobs:
           cach: npm
 
       - name: NPM Install
-        run: npm install
+        run: npm instal
       - name: NPX vite build
         run: npx vite build
 
       - name: Start Server
         run: |
-             npx wrangler devel &
+             npx wrangler dev &
              sleep 3
              kill -9 %
