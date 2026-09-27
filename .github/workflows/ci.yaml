@@ -30,6 +30,7 @@ jobs:
         run: npx vite build
 
       - name: Start Server
-        run: npx wrangler dev &
+        run: |
+             npx wrangler dev &
              sleep 3
              kill -9 %
